@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { UserModel } from '../models/User'
-import { encryptPassword } from '../utils/passwordUtils'
+import { encryptPassword, comparePasswords } from '../utils/passwordUtils'
+import { generateToken } from '../utils/JwtUtils'
 
 // @route POST api/v1/auth/register
 export const register = async (req: Request, res: Response) => {
@@ -14,21 +15,37 @@ export const register = async (req: Request, res: Response) => {
 
   const hashedPassword = encryptPassword(password)
 
-  await UserModel.create({
+  const user = await UserModel.create({
     username,
     email,
     password: hashedPassword
   })
 
+  const token = generateToken({ id: user.id })
+
   res.json({
-    ok: true
+    token
   })
 }
 
 // @route POST api/v1/auth/login
-export const login = (req: Request, res: Response) => {
+export const login = async (req: Request, res: Response) => {
+  const { email, password } = req.body
+
+  const user = await UserModel.findOne({ email })
+
+  if (!user) {
+    throw new Error('Invalid credentials')
+  }
+
+  if (!comparePasswords(password, user.password)) {
+    throw new Error('Invalid credentials')
+  }
+
+  const token = generateToken({ id: user.id })
+
   res.json({
-    ok: true
+    token
   })
 }
 
