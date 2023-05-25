@@ -60,8 +60,23 @@ export const login = async (req: Request, res: Response) => {
 }
 
 // @route POST api/v1/auth/renew-token
-export const renewToken = (req: Request, res: Response) => {
+export const renewToken = async (req: Request, res: Response) => {
+  const id = req.currentUser?.id!
+
+  const user = await UserModel.findById(id)
+
+  if (!user) {
+    throw new Error('Invalid credentials')
+  }
+
+  const token = generateToken({ id })
+
   res.json({
-    ok: true
+    user: {
+      username: user.username,
+      email: user.email,
+      id: user.id
+    },
+    token
   })
 }
