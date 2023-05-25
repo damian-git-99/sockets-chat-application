@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { login, register, verifyToken } from '../controllers/auth'
+import { login, register, renewToken } from '../controllers/auth'
 import { body } from 'express-validator'
 import { validateFields } from '../middlewares/expressValidator'
 import { validateToken } from '../middlewares/validateToken'
@@ -42,4 +42,4 @@ router.post(
   login
 )
 
-router.get('/verify-token', [validateToken], verifyToken)
+router.get('/renew-token', [validateToken], renewToken)

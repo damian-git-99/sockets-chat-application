@@ -59,8 +59,8 @@ export const login = async (req: Request, res: Response) => {
   })
 }
 
-// @route POST api/v1/auth/verify-token
-export const verifyToken = (req: Request, res: Response) => {
+// @route POST api/v1/auth/renew-token
+export const renewToken = (req: Request, res: Response) => {
   res.json({
     ok: true
   })
