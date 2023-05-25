@@ -1,7 +1,8 @@
 import { Router } from 'express'
-import { login, register, renewToken } from '../controllers/auth'
+import { login, register, verifyToken } from '../controllers/auth'
 import { body } from 'express-validator'
 import { validateFields } from '../middlewares/expressValidator'
+import { validateToken } from '../middlewares/validateToken'
 export const router = Router()
 
 // @route api/v1/auth
@@ -41,4 +42,4 @@ router.post(
   login
 )
 
-router.get('/renew-token', renewToken)
+router.get('/verify-token', [validateToken], verifyToken)

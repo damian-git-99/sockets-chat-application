@@ -24,6 +24,11 @@ export const register = async (req: Request, res: Response) => {
   const token = generateToken({ id: user.id })
 
   res.json({
+    user: {
+      username: user.username,
+      email: user.email,
+      id: user.id
+    },
     token
   })
 }
@@ -45,12 +50,17 @@ export const login = async (req: Request, res: Response) => {
   const token = generateToken({ id: user.id })
 
   res.json({
+    user: {
+      username: user.username,
+      email: user.email,
+      id: user.id
+    },
     token
   })
 }
 
-// @route POST api/v1/auth/renew-token
-export const renewToken = (req: Request, res: Response) => {
+// @route POST api/v1/auth/verify-token
+export const verifyToken = (req: Request, res: Response) => {
   res.json({
     ok: true
   })
