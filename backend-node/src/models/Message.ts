@@ -6,19 +6,24 @@ interface Message {
   message: string
 }
 
-const MessageSchema = new Schema<Message>({
-  from: {
-    type: String,
-    required: true
+const MessageSchema = new Schema<Message>(
+  {
+    from: {
+      type: String,
+      required: true
+    },
+    to: {
+      type: String,
+      required: true
+    },
+    message: {
+      type: String,
+      required: true
+    }
   },
-  to: {
-    type: String,
-    required: true
-  },
-  message: {
-    type: String,
-    required: true
+  {
+    timestamps: true
   }
-})
+)
 
 export const MessageModel = model<Message>('Message', MessageSchema)
