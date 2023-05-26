@@ -7,6 +7,7 @@ import { Server } from 'socket.io'
 import { socketsManager } from '../sockets/socketsManager'
 import { connectDB } from './dbConfig'
 import { router as authRoutes } from '../routes/auth'
+import { router as messagesRoutes } from '../routes/messages'
 import { errorHandler } from '../middlewares/errorHandler'
 dotenv.config()
 
@@ -21,6 +22,7 @@ app.use(cors())
 
 // routes
 app.use('/api/v1/auth', authRoutes)
+app.use('/api/v1/messages', messagesRoutes)
 
 app.use(errorHandler)
 
