@@ -9,7 +9,7 @@ export const AuthRouter = () => {
         <div className="wrap-login100 p-t-50 p-b-90">
           <Routes>
             <Route path="login" element={<LoginPage />} />
-            <Route path="register"element={<RegisterPage />} />
+            <Route path="register" element={<RegisterPage />} />
             <Route path="*" element={<Navigate to="/auth/login" />} />
           </Routes>
         </div>
