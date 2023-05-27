@@ -7,7 +7,6 @@ export const Messages = () => {
 
   return (
     <div className="mesgs">
-      {/* <!-- Historia inicio --> */}
       <div className="msg_history">
         {msgs.map((msg) =>
           msg % 2
@@ -19,8 +18,6 @@ export const Messages = () => {
               )
         )}
       </div>
-      {/* <!-- Historia Fin --> */}
-
       <SendMessage />
     </div>
   )

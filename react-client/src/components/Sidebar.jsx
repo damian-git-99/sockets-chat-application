@@ -9,7 +9,7 @@ export const Sidebar = () => {
         <SidebarChatItem key={chat} />
       ))}
 
-      {/* <!-- Espacio extra para scroll --> */}
+      {/* <!-- Extra scroll space --> */}
       <div className="extra_space"></div>
     </div>
   )
