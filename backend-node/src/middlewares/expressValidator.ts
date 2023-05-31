@@ -8,7 +8,6 @@ export const validateFields = (
 ) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
-    console.log(errors)
     const validationErrors: { [key: string]: string } = {}
     for (let i = 0; i < errors.array().length; i++) {
       const error = errors.array()[i]
