@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { LoginPage } from '../pages/LoginPage'
 import { RegisterPage } from '../pages/RegisterPage'
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { AuthContext } from '../context/AuthContext'
 
 export const AuthRouter = () => {
