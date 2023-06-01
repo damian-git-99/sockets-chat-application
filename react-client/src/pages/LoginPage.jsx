@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
 
 export const LoginPage = () => {
-  const { login } = useContext(AuthContext)
+  const { login, error } = useContext(AuthContext)
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -23,7 +23,6 @@ export const LoginPage = () => {
   }, [])
 
   const onChange = (e) => {
-    console.log()
     const { name, value } = e.target
     setForm({
       ...form,
@@ -39,6 +38,7 @@ export const LoginPage = () => {
 
   return (
     <form className="login100-form validate-form flex-sb flex-w" onSubmit={onSubmit}>
+      { error && <div className="alert alert-danger" role="alert"> {error} </div> }
       <span className="login100-form-title mb-3">Chat - Login</span>
 
       <div className="wrap-input100 validate-input mb-3">

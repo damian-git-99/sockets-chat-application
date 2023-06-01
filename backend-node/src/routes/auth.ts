@@ -32,11 +32,7 @@ router.post(
       .withMessage('Email is invalid')
       .notEmpty()
       .withMessage('Email is required'),
-    body('password')
-      .notEmpty()
-      .withMessage('Password is required')
-      .isLength({ min: 6 })
-      .withMessage('Password must be at least 6 characters'),
+    body('password').notEmpty().withMessage('Password is required'),
     validateFields
   ],
   login
