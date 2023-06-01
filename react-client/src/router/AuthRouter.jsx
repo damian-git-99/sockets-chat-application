@@ -1,8 +1,16 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { LoginPage } from '../pages/LoginPage'
 import { RegisterPage } from '../pages/RegisterPage'
+import { useContext, useState } from 'react'
+import { AuthContext } from '../context/AuthContext'
 
 export const AuthRouter = () => {
+  const { auth } = useContext(AuthContext)
+
+  console.log(auth)
+
+  if (auth.logged) return <Navigate to="/" />
+
   return (
     <div className="limiter">
       <div className="container-login100">

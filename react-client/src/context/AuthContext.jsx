@@ -67,6 +67,7 @@ export const AuthProvider = ({ children }) => {
       })
       localStorage.setItem('token', newToken)
     } catch (error) {
+      localStorage.removeItem('token')
       setError(error.message)
     }
   }, [])

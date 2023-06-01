@@ -37,7 +37,7 @@ export async function renewTokenRequest (token) {
         Authorization: `Bearer ${token}`
       }
     }
-    const { data } = await axios.get(`${URL}/renew-token`, null, config)
+    const { data } = await axios.get(`${URL}/renew-token`, config)
     return data
   } catch (error) {
     const message = getErrorMessage(error)
