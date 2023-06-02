@@ -7,8 +7,6 @@ import { AuthContext } from '../context/AuthContext'
 export const AuthRouter = () => {
   const { auth } = useContext(AuthContext)
 
-  console.log(auth)
-
   if (auth.logged) return <Navigate to="/" />
 
   return (
