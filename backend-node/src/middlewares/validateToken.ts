@@ -14,6 +14,9 @@ export const validateToken = (
   try {
     if (token) {
       const payload = verifyToken(token)
+      if (!payload) {
+        return res.status(401).json({ message: 'Unauthorized' })
+      }
       req.currentUser = payload
     }
     next()

@@ -16,6 +16,10 @@ export const generateToken = (payload: TokenPayload): string => {
   return jwt.sign(payload, key, { expiresIn: '4h' })
 }
 
-export const verifyToken = (token: string): TokenPayload => {
-  return jwt.verify(token, key) as TokenPayload
+export const verifyToken = (token: string): TokenPayload | false => {
+  try {
+    return jwt.verify(token, key) as TokenPayload
+  } catch (error) {
+    return false
+  }
 }
