@@ -21,8 +21,15 @@ export const ChatContextProvider = ({ children }) => {
     })
   }
 
+  const activateChat = (id) => {
+    dispatch({
+      type: ChatTypes.activateChat,
+      payload: id
+    })
+  }
+
   return (
-    <ChatContext.Provider value={ { chatState, loadUsers } }>
+    <ChatContext.Provider value={ { chatState, loadUsers, activateChat } }>
       { children }
     </ChatContext.Provider>
   )
