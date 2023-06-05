@@ -1,12 +1,16 @@
+import { useContext } from 'react'
 import { SidebarChatItem } from './SidebarChatItem'
+import { ChatContext } from '../context/chat/ChatContext'
+import { AuthContext } from '../context/AuthContext'
 
 export const Sidebar = () => {
-  const chats = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  const { chatState } = useContext(ChatContext)
+  const { auth } = useContext(AuthContext)
 
   return (
     <div className="inbox_chat">
-      {chats.map((chat) => (
-        <SidebarChatItem key={chat} />
+      {chatState?.users.filter(users => users._id !== auth.id).map((user) => (
+        <SidebarChatItem user={user} key={user._id} />
       ))}
 
       {/* <!-- Extra scroll space --> */}
