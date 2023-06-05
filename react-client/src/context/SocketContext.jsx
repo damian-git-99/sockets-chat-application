@@ -6,10 +6,14 @@ import { AuthContext } from './AuthContext'
 export const SocketContext = React.createContext({})
 
 const connectSocketServer = () => {
+  const token = localStorage.getItem('token')
   const socket = io.connect('http://localhost:8080', {
     transports: ['websocket'],
     autoConnect: true,
-    forceNew: true
+    forceNew: true,
+    query: {
+      token
+    }
   })
   return socket
 }
