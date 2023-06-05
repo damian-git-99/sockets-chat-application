@@ -18,7 +18,7 @@ export async function socketsManager(io: IO) {
     const { id } = payload
     await connectUser(id)
 
-    io.emit('users-list', await getUsers())
+    io.emit('users-list', await getUsers(id))
 
     client.on('disconnect', async (client) => {
       console.log('Client disconnected')
