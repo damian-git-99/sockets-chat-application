@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import io from 'socket.io-client'
 import { AuthContext } from './AuthContext'
+import { ChatContext } from './chat/ChatContext'
 
 export const SocketContext = React.createContext({})
 
@@ -22,6 +23,7 @@ export const SocketContextProvider = ({ children }) => {
   const [socket, setSocket] = useState(null)
   const [online, setOnline] = useState(false)
   const { auth } = useContext(AuthContext)
+  const { loadUsers } = useContext(ChatContext)
 
   useEffect(() => {
     if (auth?.logged) {
@@ -37,6 +39,12 @@ export const SocketContextProvider = ({ children }) => {
       socket?.disconnect()
     }
   }, [auth])
+
+  useEffect(() => {
+    socket?.on('users-list', (users) => {
+      loadUsers(users)
+    })
+  }, [socket])
 
   return (
     <SocketContext.Provider value={{ socket, online }}>
