@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useReducer } from 'react'
-import { chatReducer } from './ChatReducer'
+import { ChatTypes, chatReducer } from './ChatReducer'
 
 export const ChatContext = React.createContext({})
 
@@ -13,8 +13,16 @@ const initialState = {
 
 export const ChatContextProvider = ({ children }) => {
   const [chatState, dispatch] = useReducer(chatReducer, initialState)
+
+  const loadUsers = (users) => {
+    dispatch({
+      type: ChatTypes.loadUsers,
+      payload: users
+    })
+  }
+
   return (
-    <ChatContext.Provider value={ { chatState, dispatch } }>
+    <ChatContext.Provider value={ { chatState, loadUsers } }>
       { children }
     </ChatContext.Provider>
   )
