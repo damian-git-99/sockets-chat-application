@@ -1,7 +1,7 @@
 import { Server } from 'socket.io'
 import { DefaultEventsMap } from 'socket.io/dist/typed-events'
 import { verifyToken } from '../utils/JwtUtils'
-import { connectUser, disconnectUser } from './socketsService'
+import { connectUser, disconnectUser, getUsers } from './socketsService'
 
 interface IO
   extends Server<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any> {}
@@ -17,6 +17,8 @@ export async function socketsManager(io: IO) {
     }
     const { id } = payload
     await connectUser(id)
+
+    io.emit('users-list', await getUsers())
 
     client.on('disconnect', async (client) => {
       console.log('Client disconnected')

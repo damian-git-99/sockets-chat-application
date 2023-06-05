@@ -15,3 +15,8 @@ export const disconnectUser = async (id: string) => {
   await user.save()
   return user
 }
+
+export const getUsers = async () => {
+  const users = await UserModel.find().select('-password').sort('-online')
+  return users
+}
