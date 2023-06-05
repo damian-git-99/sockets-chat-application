@@ -18,15 +18,14 @@ export async function socketsManager(io: IO) {
     const { id } = payload
     await connectUser(id)
 
-    io.emit('users-list', await getUsers(id))
+    io.emit('users-list', await getUsers())
 
     client.on('disconnect', async (client) => {
       console.log('Client disconnected')
       await disconnectUser(id)
+      io.emit('users-list', await getUsers())
     })
   })
-  // TODO: emit all connected users
   // TODO: socket join
   // TODO: listening to clients -> personal messages
-  // TODO: handle disconnects
 }
