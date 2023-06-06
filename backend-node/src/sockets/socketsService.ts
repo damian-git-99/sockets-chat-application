@@ -1,6 +1,5 @@
+import { MessageModel } from '../models/Message'
 import { UserModel } from '../models/User'
-const mongoose = require('mongoose')
-const ObjectId = mongoose.Types.ObjectId
 
 export const connectUser = async (id: string) => {
   const user = await UserModel.findById(id)
@@ -21,4 +20,14 @@ export const disconnectUser = async (id: string) => {
 export const getUsers = async () => {
   const users = await UserModel.find().select('-password').sort('-online')
   return users
+}
+
+// todo: move to another file
+export const saveMessage = async (messageData: {
+  from: string
+  to: string
+  message: string
+}) => {
+  const message = await MessageModel.create(messageData)
+  return message
 }

@@ -41,9 +41,18 @@ export const SocketContextProvider = ({ children }) => {
   }, [auth])
 
   useEffect(() => {
+    console.log('entro')
     socket?.on('users-list', (users) => {
+      console.log(users)
       loadUsers(users)
     })
+
+    socket?.on('message', (message) => {
+      console.log(message)
+    })
+    return () => {
+      socket?.disconnect()
+    }
   }, [socket])
 
   return (
