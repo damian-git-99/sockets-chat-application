@@ -28,8 +28,15 @@ export const ChatContextProvider = ({ children }) => {
     })
   }
 
+  const newMessage = (message) => {
+    dispatch({
+      type: ChatTypes.newMessage,
+      payload: message
+    })
+  }
+
   return (
-    <ChatContext.Provider value={ { chatState, loadUsers, activateChat } }>
+    <ChatContext.Provider value={ { chatState, loadUsers, activateChat, newMessage } }>
       { children }
     </ChatContext.Provider>
   )

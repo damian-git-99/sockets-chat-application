@@ -1,6 +1,7 @@
 export const ChatTypes = {
   loadUsers: '[Chat] Load Users',
-  activateChat: '[Chat] activate chat'
+  activateChat: '[Chat] activate chat',
+  newMessage: '[Chat] new message'
 }
 
 export const chatReducer = (state, action) => {
@@ -17,6 +18,18 @@ export const chatReducer = (state, action) => {
         activeChat: action.payload,
         messages: []
       }
+    case ChatTypes.newMessage:
+      if (state.activeChat === action.payload.from ||
+          state.activeChat === action.payload.to
+      ) {
+        return {
+          ...state,
+          messages: [...state.messages, action.payload]
+        }
+      }
+
+      return state
+
     default:
       return state
   }
