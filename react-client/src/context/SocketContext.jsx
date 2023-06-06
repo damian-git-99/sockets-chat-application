@@ -23,7 +23,7 @@ export const SocketContextProvider = ({ children }) => {
   const [socket, setSocket] = useState(null)
   const [online, setOnline] = useState(false)
   const { auth } = useContext(AuthContext)
-  const { loadUsers } = useContext(ChatContext)
+  const { loadUsers, newMessage } = useContext(ChatContext)
 
   useEffect(() => {
     if (auth?.logged) {
@@ -41,15 +41,14 @@ export const SocketContextProvider = ({ children }) => {
   }, [auth])
 
   useEffect(() => {
-    console.log('entro')
     socket?.on('users-list', (users) => {
-      console.log(users)
       loadUsers(users)
     })
 
     socket?.on('message', (message) => {
-      console.log(message)
+      newMessage(message)
     })
+
     return () => {
       socket?.disconnect()
     }
