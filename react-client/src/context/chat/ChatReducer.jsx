@@ -4,6 +4,16 @@ export const ChatTypes = {
   newMessage: '[Chat] new message'
 }
 
+/*
+  Chat State
+  {
+    userId: '',
+    activeChat: null, // id of the user to whom I want to send messages
+    users: [],
+    messages: []
+  }
+*/
+
 export const chatReducer = (state, action) => {
   switch (action.type) {
     case ChatTypes.loadUsers:
