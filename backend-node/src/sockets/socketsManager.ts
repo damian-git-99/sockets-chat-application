@@ -35,7 +35,6 @@ export async function socketsManager(io: IO) {
     client.on('message', async (messageData) => {
       const message = await saveMessage(messageData)
       io.to(message.to).emit('message', message)
-      io.to(message.from).emit('message', message)
     })
 
     client.on('disconnect', async (client) => {

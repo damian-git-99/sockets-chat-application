@@ -5,7 +5,7 @@ import { SocketContext } from '../context/SocketContext'
 
 export const SendMessage = () => {
   const { auth } = useContext(AuthContext)
-  const { chatState } = useContext(ChatContext)
+  const { chatState, newMessage } = useContext(ChatContext)
   const { socket } = useContext(SocketContext)
 
   const [form, setForm] = useState({
@@ -23,6 +23,7 @@ export const SendMessage = () => {
       message
     }
     socket.emit('message', messageData)
+    newMessage(messageData)
     setForm({ message: '' })
   }
 
