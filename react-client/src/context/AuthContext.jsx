@@ -55,8 +55,7 @@ export const AuthProvider = ({ children }) => {
   const verifyToken = useCallback(async () => {
     try {
       setError(null)
-      const token = localStorage.getItem('token')
-      const data = await renewTokenRequest(token)
+      const data = await renewTokenRequest()
       const { user, token: newToken } = data
       setAuth({
         id: user.id,
