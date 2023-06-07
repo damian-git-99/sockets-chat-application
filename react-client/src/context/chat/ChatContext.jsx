@@ -41,8 +41,14 @@ export const ChatContextProvider = ({ children }) => {
     })
   }
 
+  const clearChat = () => {
+    dispatch({
+      type: ChatTypes.clearChat
+    })
+  }
+
   return (
-    <ChatContext.Provider value={ { chatState, loadUsers, activateChat, newMessage } }>
+    <ChatContext.Provider value={ { chatState, loadUsers, activateChat, newMessage, clearChat } }>
       { children }
     </ChatContext.Provider>
   )

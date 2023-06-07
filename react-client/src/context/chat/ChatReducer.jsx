@@ -2,7 +2,8 @@ export const ChatTypes = {
   loadUsers: '[Chat] Load Users',
   activateChat: '[Chat] activate chat',
   loadMessages: '[Chat] load messages',
-  newMessage: '[Chat] new message'
+  newMessage: '[Chat] new message',
+  clearChat: '[Chat] clear chat'
 }
 
 /*
@@ -44,6 +45,13 @@ export const chatReducer = (state, action) => {
         }
       }
       return state
+    case ChatTypes.clearChat:
+      return {
+        userId: '',
+        activeChat: null,
+        users: [],
+        messages: []
+      }
     default:
       return state
   }

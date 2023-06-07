@@ -1,11 +1,14 @@
 import { useContext } from 'react'
 import { AuthContext } from '../context/AuthContext'
+import { ChatContext } from '../context/chat/ChatContext'
 
 export const Searchbox = () => {
   const { logout, auth } = useContext(AuthContext)
+  const { clearChat } = useContext(ChatContext)
 
   const handleExit = () => {
     logout()
+    clearChat()
   }
 
   return (
