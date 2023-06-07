@@ -23,7 +23,7 @@ export const SendMessage = () => {
       message
     }
     socket.emit('message', messageData)
-    newMessage(messageData)
+    newMessage(messageData) // todo: resolve messageData does not have _id
     setForm({ message: '' })
   }
 
