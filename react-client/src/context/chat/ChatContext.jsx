@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useReducer } from 'react'
 import { ChatTypes, chatReducer } from './ChatReducer'
+import { getMessages } from '../../api/Messages'
 
 export const ChatContext = React.createContext({})
 
@@ -21,10 +22,15 @@ export const ChatContextProvider = ({ children }) => {
     })
   }
 
-  const activateChat = (id) => {
+  const activateChat = async (id) => {
     dispatch({
       type: ChatTypes.activateChat,
       payload: id
+    })
+    const response = await getMessages(id)
+    dispatch({
+      type: ChatTypes.loadMessages,
+      payload: response.messages
     })
   }
 
