@@ -30,8 +30,9 @@ export async function registerRequest (username, email, password) {
   }
 }
 
-export async function renewTokenRequest (token) {
+export async function renewTokenRequest () {
   try {
+    const token = localStorage.getItem('token')
     const config = {
       headers: {
         Authorization: `Bearer ${token}`
